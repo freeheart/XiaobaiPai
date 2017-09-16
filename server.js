@@ -1,11 +1,14 @@
-var http = require("http"),
-    server = http.createServer(function(req, res) {
-        res.writeHead(200, {
-            "Content-Type": "text/plain"
-        });
-        res.write("xiao bai pai!");
-        res.end();
-    });
-//监听80端口
-server.listen(80);
-console.log('xiaobaipai server started');
+var https = require('https');
+var fs = require('fs');
+var basedir = '/var/webkey/';
+
+var options = {
+	key: fs.readFileSync(basedir + 'server-key.pem'),
+	ca: [fs.readFileSync(basedir + 'ca-cert.pem')],
+	cert: fs.readFileSync(basedir + 'server-cert.pem')
+};
+
+https.createServer(options,function(req,res){
+	res.writeHead(200);
+	res.end('hello world\n');
+}).listen(433,'127.0.0.1');

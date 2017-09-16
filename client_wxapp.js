@@ -155,3 +155,35 @@ var getInfo = function (thisObj){
     }
   });
 } 
+
+//request方法
+Page({
+  data: {
+    motto: 'wzh ... '
+  },
+  //事件处理函数
+  onLoad: function (options) {
+    var that = this
+
+    //技能资讯列表
+    wx.request({
+      url: 'http://192.168.1.103/yiji/skillList.php',
+      method: 'POST',
+      data:'pageSize=1&pageNum=10',
+      header: {
+        'content-type':'application/x-www-form-urlencoded',
+        'Accept': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data)
+        //这样赋值现在是不能将数据传走的，必须使用setData()方法
+        //that.data.items = res.data ;
+        //官方文档指出必须使用setData()方法才能将数据传走
+        that.setData({
+          items: res.data
+        })
+      }
+
+    })
+  }
+})

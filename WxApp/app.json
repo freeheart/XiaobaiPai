@@ -1,0 +1,11 @@
+{
+  "pages":[
+    "pages/index/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#efefef",
+    "navigationBarTitleText": "小白拍卖行",
+    "navigationBarTextStyle":"black"
+  }
+}
